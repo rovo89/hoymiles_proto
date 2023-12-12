@@ -1,0 +1,142 @@
+syntax = "proto3";
+package Command;
+
+enum CommandAction {
+  ACTION_UNSPECIFIED = 0;
+  ACTION_DTU_REBOOT = 1;
+  ACTION_DTU_UPGRADE = 2;
+  ACTION_MI_REBOOT = 3;
+  ACTION_MI_COLLECT_VERSION = 4;
+  ACTION_MI_ANTI_THEFT_SETTINGS = 5;
+  ACTION_MI_START = 6;
+  ACTION_MI_SHUTDOWN = 7;
+  ACTION_LIMIT_POWER = 8;
+  ACTION_REFLUX_CONTROL = 9;
+  ACTION_CLEAN_GROUNDING_FAULT = 10;
+  ACTION_METER_SET_CT = 11;
+  ACTION_MI_LOCK = 12;
+  ACTION_MI_UNLOCK = 13;
+  ACTION_SET_GRID_FILE = 14;
+  ACTION_MI_UPGRADE = 15;
+  ACTION_ID_NETWORKING = 16;
+  ACTION_REFLUX_NETWORKING = 17;
+  ACTION_MI_ABORT_COMMAND = 18;
+  ACTION_SET_WIFI_PASS = 19;
+  ACTION_SET_SVR_DNS_PORT = 20;
+  ACTION_SET_GPRS_APN = 21;
+  ACTION_MI_ANTI_THEFT_SWITCH = 22;
+  ACTION_SIGNAL_MULTI = 23;
+  ACTION_SIGNAL_SINGLE = 24;
+  ACTION_APP_DTU_UPGRADE = 25;
+  ACTION_APP_MI_UPGRADE = 32;
+  ACTION_POLL_ALL = 33;
+  ACTION_POLL_SINGLE = 34;
+  ACTION_APP_DTU_CHECK = 35;
+  ACTION_RS485_CONFIG = 36;
+  ACTION_THREE_PHASE_SETTINGS = 37;
+  ACTION_SELF_INSPECTION = 38;
+  ACTION_SUN_SPEC_CONFIG = 39;
+  ACTION_POWER_GENERATION_CORRECT = 40;
+  ACTION_GRID_FILE_READ = 41;
+  ACTION_CLEAR_ALARM = 42;
+  ACTION_DRM_SETTING = 43;
+  ACTION_READ_MI_HU_WARN = 46;
+  ACTION_LIMIT_POWER_PF = 47;
+  ACTION_LIMIT_POWER_REACTIVE = 48;
+  ACTION_METER_REVERSE = 49;
+  ACTION_ALARM_ALL = 50;
+  ACTION_ALARM_SINGLE = 51;
+  ACTION_MI_MEMORY_SNAPSHOT = 53;
+  ACTION_MI_DATA_WAVE = 54;
+}
+
+enum DeviceKind {
+  DEV_UNSPECIFIED = 0;
+  DEV_DTU = 1;
+  DEV_REPEATER = 2;
+  DEV_MICRO = 3;
+  DEV_LAYOUT = 4;
+  DEV_METER = 5;
+  DEV_INVERTER = 6;
+  DEV_RSD = 7;
+  DEV_OPTIMIZER = 8;
+  DEV_GATEWAY = 9;
+  DEV_BATTERY = 10;
+}
+
+message CommandToDtu {
+  int32 time = 1;
+  CommandAction action = 2;
+  DeviceKind dev_kind = 3;
+  int32 package_count = 4;
+  int32 package_idx = 5;
+  int64 tid = 6;
+  string data = 7;
+  repeated string es_to_sn = 8;
+  repeated int64 mi_to_sn = 9;
+  int32 system_total_a = 10;
+  int32 system_total_b = 11;
+  int32 system_total_c = 12;
+  repeated int64 mi_sn_item_a = 13;
+  repeated int64 mi_sn_item_b = 14;
+  repeated int64 mi_sn_item_c = 15;
+}
+
+message CommandFromDtu {
+  string dtu_sn = 1;
+  int32 time = 2;
+  CommandAction action = 3;
+  int32 package_idx = 4;
+  int32 err_code = 5;
+  int64 tid = 6;
+}
+
+message ESOperatingStatus {
+  string es_sn = 1;
+  int32 progress_rate = 2;
+}
+
+message MIOperatingStatus {
+  int64 mi_sn = 1;
+  int32 progress_rate = 2;
+}
+
+message MIErrorStatus {
+  int64 mi_sn = 1;
+  int64 error_code = 2;
+}
+
+message ESSuccessStatus {
+  string es_sn = 1;
+}
+
+message ESErrorStatus {
+  string es_sn = 1;
+  int64 error_code = 2;
+}
+
+message CommandStatusFromDtu {
+  string dtu_sn = 1;
+  int32 time = 2;
+  CommandAction action = 3;
+  int32 package_count = 4;
+  int32 package_idx = 5;
+  int64 tid = 6;
+  repeated string es_sns_success = 7;
+  repeated int64 mi_sns_success = 8;
+  repeated string es_sns_failed = 9;
+  repeated int64 mi_sns_failed = 10;
+  repeated ESOperatingStatus es_operating_status = 11;
+  repeated MIOperatingStatus mi_operating_status = 12;
+  repeated MIErrorStatus mi_error_status = 13;
+  repeated ESSuccessStatus es_success_status = 14;
+  repeated ESErrorStatus es_error_status = 15;
+}
+
+message CommandStatusToDtu {
+  int32 time = 1;
+  CommandAction action = 2;
+  int32 package_idx = 3;
+  int64 tid = 4;
+  int32 err_code = 5;
+}

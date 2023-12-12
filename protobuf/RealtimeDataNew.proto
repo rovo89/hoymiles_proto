@@ -1,0 +1,124 @@
+syntax = "proto3";
+package RealtimeDataNew;
+
+message Meter {
+  int32 type = 1;
+  int64 sn = 2;
+  int32 p_total = 3;
+  int32 p_total_a = 4;
+  int32 p_total_b = 5;
+  int32 p_total_c = 6;
+  int32 pf_total = 7;
+  int32 ep_total = 8;
+  int32 ep_total_a = 9;
+  int32 ep_total_b = 10;
+  int32 ep_total_c = 11;
+  int32 en_total = 12;
+  int32 en_total_a = 13;
+  int32 en_total_b = 14;
+  int32 en_total_c = 15;
+  int32 fault = 16;
+  int32 u_a = 17;
+  int32 u_b = 18;
+  int32 u_c = 19;
+  int32 i_a = 20;
+  int32 i_b = 21;
+  int32 i_c = 22;
+  int32 pf_a = 23;
+  int32 pf_b = 24;
+  int32 pf_c = 25;
+}
+
+message Repeater {
+  int64 sn = 1;
+  int32 signal = 2;
+  int32 channel = 3;
+  int32 panel_count = 4;
+  int32 link = 5;
+}
+
+message Rsd {
+  int64 sn = 1;
+  int32 ver = 2;
+  int32 v = 3;
+  int32 p = 4;
+  int32 temp = 5;
+  int32 wnum = 6;
+  int32 crc = 7;
+  int32 link = 8;
+}
+
+message Grid {
+  int64 sn = 1;
+  int32 ver = 2;
+  int32 v = 3;
+  int32 freq = 4;
+  int32 p = 5;
+  int32 q = 6;
+  int32 i = 7;
+  int32 pf = 8;
+  int32 temp = 9;
+  int32 wnum = 10;
+  int32 crc = 11;
+  int32 link = 12;
+  int32 p_lim = 13;
+  int32 mi_signal = 20;
+}
+
+message ThreePhaseGrid {
+  int64 sn = 1;
+  int32 ver = 2;
+  int32 v_a = 3;
+  int32 v_b = 4;
+  int32 v_c = 5;
+  int32 v_ab = 6;
+  int32 v_bc = 7;
+  int32 v_ca = 8;
+  int32 freq = 9;
+  int32 p = 10;
+  int32 q = 11;
+  int32 i_a = 12;
+  int32 i_b = 13;
+  int32 i_c = 14;
+  int32 pf = 15;
+  int32 temp = 16;
+  int32 wnum = 17;
+  int32 crc = 18;
+  int32 link = 19;
+  int32 mi_signal = 20;
+}
+
+message Panel {
+  int64 sn = 1;
+  int32 pi = 2;
+  int32 v = 3;
+  int32 i = 4;
+  int32 p = 5;
+  int32 et = 6;
+  int32 ed = 7;
+  int32 code = 8;
+}
+
+message RealtimeDataNewFromDtu {
+  string sn = 1;
+  int32 time = 2;
+  int32 ap = 3;
+  int32 cp = 4;
+  int32 ver = 5;
+  repeated Meter meters = 6;
+  repeated Repeater repeaters = 7;
+  repeated Rsd rsds = 8;
+  repeated Grid grids = 9;
+  repeated ThreePhaseGrid three_phase_grids = 10;
+  repeated Panel panels = 11;
+  uint64 dtu_p = 12;
+  uint64 dtu_ed = 13;
+}
+
+message RealtimeDataNewToDtu {
+  string ymd_hms = 1;
+  int32 cp = 2;
+  int32 err_code = 3;
+  int32 offset = 4;
+  int32 time = 5;
+}

@@ -1,0 +1,56 @@
+syntax = "proto3";
+package AppDevData;
+
+import public "_DevData.proto";
+
+message Dtu {
+  int32 device_kind = 1;
+  int32 sw_version = 2;
+  int32 hw_version = 3;
+  int32 step_time = 4;
+  int32 rf_hw_version = 5;
+  int32 rf_sw_version = 6;
+  int32 access_model = 7;
+  int32 communication_time = 8;
+  int32 signal_strength = 9;
+  string gprs_version = 10;
+  string wifi_version = 11;
+  string ka_count = 12;
+  int32 rule_id = 13;
+  int32 error_code = 14;
+  int32 dtu485_mode = 15;
+  int32 dtu485_addr = 16;
+  int32 sub1g_fqband = 17;
+  int32 sub1g_chtnum = 18;
+  int32 sub1g_chnum = 19;
+  int32 sub1g_rp = 20;
+  int32 sub1g_chtotal = 21;
+  string gprs_imei = 22;
+}
+
+message Meter {
+  int32 device_kind = 1;
+  int64 sn = 2;
+  int32 model = 3;
+  int32 ct = 4;
+  int32 com_way = 5;
+  int32 access_mode = 6;
+  int32 sw_version = 7;
+  string val = 8;
+}
+
+message DevDataFromDtu {
+  string dtu_sn = 1;
+  int32 time = 2;
+  int32 inverter_count = 3;
+  int32 panel_count = 4;
+  int32 package_count = 5;
+  int32 package_idx = 6;
+  int32 channel = 7;
+  Dtu dtu = 8;
+  repeated Meter meters = 9;
+  repeated Repeater repeaters = 10;
+  repeated Inverter inverters = 11;
+  uint32 mf = 12;
+  repeated Feature features = 13;
+}

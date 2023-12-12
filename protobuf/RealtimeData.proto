@@ -1,0 +1,78 @@
+syntax = "proto3";
+package RealtimeData;
+
+message Meter {
+  int32 device_kind = 1;
+  int64 sn = 2;
+  int32 p_total = 3;
+  int32 p_total_a = 4;
+  int32 p_total_b = 5;
+  int32 p_total_c = 6;
+  int32 factor = 7;
+  int32 ep_total = 8;
+  int32 ep_total_a = 9;
+  int32 ep_total_b = 10;
+  int32 ep_total_c = 11;
+  int32 en_total = 12;
+  int32 en_total_a = 13;
+  int32 en_total_b = 14;
+  int32 en_total_c = 15;
+  int32 fault = 16;
+}
+
+message Repeater {
+  int64 sn = 1;
+  int32 signal = 2;
+  int32 channel = 3;
+  int32 link_count = 4;
+  int32 link_status = 5;
+}
+
+message Panel {
+  int64 sn = 1;
+  int32 port = 2;
+  int32 v = 3;
+  int32 current = 4;
+  int32 power = 5;
+  int32 energy_total = 6;
+  int32 grid_v = 7;
+  int32 grid_v_max = 8;
+  int32 grid_freq = 9;
+  int32 grid_p = 10;
+  int32 grid_q = 11;
+  int32 grid_i = 12;
+  int32 grid_pf = 13;
+  int32 temp = 14;
+  int32 run_status = 15;
+  int32 fault_num = 16;
+  int32 fault_cnt = 17;
+  int32 warning_cnt = 18;
+  int32 link_status = 19;
+  int32 send_p = 20;
+  int32 rev_p = 21;
+  int32 time = 22;
+  int32 energy = 23;
+  int32 mi_signal = 24;
+}
+
+message RealtimeDataFromDtu {
+  string dtu_sn = 1;
+  int32 time = 2;
+  int32 inverter_count = 3;
+  int32 panel_count = 4;
+  int32 package_count = 5;
+  int32 package_idx = 6;
+  int32 csq = 7;
+  repeated Meter meters = 8;
+  repeated Repeater repeaters = 9;
+  repeated Panel panels = 10;
+  int32 version = 11;
+}
+
+message RealtimeDataToDtu {
+  string ymd_hms = 1;
+  int32 package_idx = 2;
+  int32 err_code = 3;
+  int32 offset = 4;
+  int32 time = 5;
+}

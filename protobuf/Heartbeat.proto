@@ -1,0 +1,16 @@
+syntax = "proto3";
+package Heartbeat;
+
+message HeartbeatFromDtu {
+  int32 offset = 1;
+  int32 time = 2;
+  int32 csq = 3;
+  string dtu_sn = 4;
+  string dev_sn = 5;
+}
+
+message HeartbeatToDtu {
+  int32 offset = 1;
+  int32 time = 2;
+  string ymd_hms = 3;
+}

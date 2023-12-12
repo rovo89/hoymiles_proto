@@ -1,0 +1,82 @@
+syntax = "proto3";
+package DevConfig;
+
+enum RuleType {
+  MI_DATA = 0;
+  GRID_PROFILE = 1;
+}
+
+message DevConfigFetchToDtu {
+  int32 time = 1;
+  int64 tid = 2;
+  string dtu_sn = 3;
+  string dev_sn = 4;
+  int32 package_idx = 5;
+  int32 rule_type = 6;
+}
+
+message DevConfigFetchFromDtu {
+  int32 time = 1;
+  int64 tid = 2;
+  int32 rule_id = 3;
+  bytes data = 4;
+  int32 crc = 5;
+  string dtu_sn = 6;
+  string dev_sn = 7;
+  bytes cfg_data = 8;
+  int32 cfg_crc = 9;
+  int32 package_count = 10;
+  int32 package_idx = 11;
+  int32 rule_type = 12;
+}
+
+message DevConfigPutToDtu {
+  int32 time = 1;
+  int64 tid = 2;
+  int32 rule_id = 3;
+  bytes data = 4;
+  int32 crc = 5;
+  string dtu_sn = 6;
+  string dev_sn = 7;
+  bytes cfg_data = 8;
+  int32 cfg_crc = 9;
+  int32 package_count = 10;
+  int32 package_idx = 11;
+  repeated int64 mi_to_sn = 12;
+  int32 rule_type = 13;
+}
+
+message DevConfigPutFromDtu {
+  int32 time = 1;
+  int64 tid = 2;
+  string dtu_sn = 3;
+  string dev_sn = 4;
+  int32 status = 5;
+  int32 package_idx = 6;
+  repeated int64 mi_to_sn = 7;
+  int32 rule_type = 8;
+}
+
+message DevConfigReportFromDtu {
+  int32 time = 1;
+  int64 tid = 2;
+  int32 rule_id = 3;
+  bytes data = 4;
+  int32 crc = 5;
+  string dtu_sn = 6;
+  string dev_sn = 7;
+  bytes cfg_data = 8;
+  int32 cfg_crc = 9;
+  int32 package_count = 10;
+  int32 package_idx = 11;
+  int32 rule_type = 12;
+}
+
+message DevConfigReportToDtu {
+  int32 time = 1;
+  int64 tid = 2;
+  string dtu_sn = 3;
+  string dev_sn = 4;
+  int32 package_idx = 5;
+  int32 rule_type = 6;
+}

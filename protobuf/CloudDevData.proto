@@ -1,0 +1,51 @@
+syntax = "proto3";
+package CloudDevData;
+
+import public "_DevData.proto";
+
+message Dtu {
+  int32 device_kind = 1;
+  int32 sw_version = 2;
+  int32 hw_version = 3;
+  int32 step_time = 4;
+  int32 rf_hw_version = 5;
+  int32 rf_sw_version = 6;
+  int32 access_model = 7;
+  string gprs_version = 8;
+  string wifi_version = 9;
+  string ka_count = 10;
+  int32 rule_id = 11;
+  int32 error_code = 12;
+  int32 grid_type = 13;
+  int32 zero_export_switch= 14;
+  int32 surplus_power_a = 15;
+  int32 surplus_power_b = 16;
+  int32 surplus_power_c = 17;
+  int32 zero_export_control= 18;
+  int32 phase_balance_switch = 19;
+  int32 tolerance_between_phases = 20;
+}
+
+message Meter {
+  int32 device_kind = 1;
+  int64 sn = 2;
+  int32 model = 3;
+  int32 ct = 4;
+  int32 com_way = 5;
+  int32 access_mode = 6;
+}
+
+message DevDataFromDtu {
+  string dtu_sn = 1;
+  int32 time = 2;
+  int32 inverter_count = 3;
+  int32 panel_count = 4;
+  int32 package_count = 5;
+  int32 package_idx = 6;
+  int32 channel = 7;
+  Dtu dtu = 8;
+  repeated Meter meters = 9;
+  repeated Repeater repeaters = 10;
+  repeated Inverter inverters = 11;
+  repeated Feature features = 12;
+}

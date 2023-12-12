@@ -1,0 +1,31 @@
+from .cloud import Cloud
+from .app import App
+
+msg_type_to_cls = {
+  0x2201: Cloud.DevData.Req, 0x2301: Cloud.DevData.Res,
+  0x2202: Cloud.Heartbeat.Req, 0x2302: Cloud.Heartbeat.Res,
+  0x2203: Cloud.RealtimeData.Req, 0x2303: Cloud.RealtimeData.Res,
+  0x2204: Cloud.HistoryData.Req, 0x2304: Cloud.HistoryData.Res,
+  0x2305: Cloud.Command.Req, 0x2205: Cloud.Command.Res,
+  0x2206: Cloud.CommandStatus.Req, 0x2306: Cloud.CommandStatus.Res,
+  0x2207: Cloud.DevConfigFetch.Req, 0x2307: Cloud.DevConfigFetch.Res,
+  0x2308: Cloud.DevConfigPut.Req, 0x2208: Cloud.DevConfigPut.Res,
+  0x220A: Cloud.Wave.Req, 0x230A: Cloud.Wave.Res,
+  0x220B: Cloud.Alarms.Req, 0x230B: Cloud.Alarms.Res,
+  0x220C: Cloud.RealtimeDataNew.Req, 0x230C: Cloud.RealtimeDataNew.Res,
+  0x220D: Cloud.HistoryDataNew.Req, 0x230D: Cloud.HistoryDataNew.Res,
+  0x220E: Cloud.DevConfigReport.Req, 0x230E: Cloud.DevConfigReport.Res,
+  0xA301: App.DevData.Req, 0xA201: App.DevData.Res,
+  0xA302: App.Heartbeat.Req, 0xA202: App.Heartbeat.Res,
+  0xA303: App.RealtimeData.Req, 0xA203: App.RealtimeData.Res,
+  0xA304: App.Alarms.Req, 0xA204: App.Alarms.Res,
+  0xA305: App.Command.Req, 0xA205: App.Command.Res,
+  0xA306: App.CommandStatus.Req, 0xA206: App.CommandStatus.Res,
+  0xA307: App.DevConfigFetch.Req, 0xA207: App.DevConfigFetch.Res,
+  0xA308: App.DevConfigPut.Req, 0xA208: App.DevConfigPut.Res,
+  0xA309: App.GetConfig.Req, 0xA209: App.GetConfig.Res,
+  0xA310: App.SetConfig.Req, 0xA210: App.SetConfig.Res,
+  0xA311: App.RealtimeDataNew.Req, 0xA211: App.RealtimeDataNew.Res,
+  0xA213: App.AutoSearch.Req, 0xA313: App.AutoSearch.Res,
+  0xA214: App.NetworkInfo.Req, 0xA314: App.NetworkInfo.Res,
+}

@@ -1,0 +1,51 @@
+syntax = "proto3";
+package Alarms;
+
+message Alarm {
+  int64 sn = 1;
+  int32 code = 2;
+  int32 num = 3;
+  int32 start_time = 4;
+  int32 end_time = 5;
+  int32 data1 = 6;
+  int32 data2 = 7;
+}
+
+message AlarmsFromDtu {
+  string dtu_sn = 1;
+  int32 time = 2;
+  int32 package_count = 3;
+  int32 package_idx = 4;
+  int32 warn_device = 5;
+  repeated Alarm alarms = 6;
+}
+
+message AlarmsToDtu {
+  string ymd_hms = 1;
+  int32 package_idx = 2;
+  int32 err_code = 3;
+  int32 offset = 4;
+  int32 time = 5;
+}
+
+message WaveFromDtu {
+  string dtu_sn = 1;
+  int32 time = 2;
+  int32 package_count = 3;
+  int32 package_idx = 4;
+  int64 pv_sn = 5;
+  int32 code = 6;
+  int32 num = 7;
+  int32 warn_time = 8;
+  int32 data_len = 9;
+  int32 pos = 10;
+  string warn_data = 11;
+}
+
+message WaveToDtu {
+  string ymd_hms = 1;
+  int32 package_idx = 2;
+  int32 err_code = 3;
+  int32 offset = 4;
+  int32 time = 5;
+}
