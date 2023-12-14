@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import asyncio
-import time
 from hoymiles_proto import SN, DtuClient, ReqMessage, Cloud, int_time, hmcrc
 
 DTU_SN = SN('4143xxxxxxxx')
