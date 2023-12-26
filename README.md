@@ -9,7 +9,12 @@ I hope the general approach is rather stable. My intention is to publish this on
 
 Execute:
 1. Extract the `protoc` executable from a recent [protobuf](https://github.com/protocolbuffers/protobuf/releases) release into the main directory. Version 25.0 works fine.
-1. Install dependent packages via your system package manager or `pip install`:
+   ```bash
+   wget https://github.com/protocolbuffers/protobuf/releases/download/v25.1/protoc-25.1-linux-x86_64.zip
+   unzip protoc-25.1-linux-x86_64.zip
+   ```
+
+2. Install dependent packages via your system package manager or `pip install`:
     * `asyncio`
     * `crcmod`
     * `datetime`
@@ -19,8 +24,25 @@ Execute:
     * `random`
     * `struct`
     * `time`
-1. Execute `./gen_protos.py`
-1. Execute `./gen_message_classes.py`
+   ```bash
+   sudo pip install asyncio crcmod datetime importlib protobuf
+   #sudo pip install enum random struct time
+   ```
+   
+3. Execute `./gen_protos.py`
+
+   ```bash
+   vi gen_protos.py
+   # Execute protoc (preferring executable in current directory).
+   os.environ['PATH'] = './bin/:' + os.environ['PATH']
+   ./gen_protos.py
+   ```
+
+4. Execute `./gen_message_classes.py`
+
+   ```bash
+   ./gen_message_classes.py
+   ```
 
 ## Random notes
 * At least the integrated DTU of HMS-800W-2T allows only a single connection at a time. Opening another connection to its port 10081 will close the existing one (usually - I think I had one situation where the new connection was closed). So expect to be disconnected at any time. You might also receive a response for a command that was triggered on the old connection. This isn't handled well by the library currently.
